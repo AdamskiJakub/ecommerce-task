@@ -3,6 +3,10 @@
 Recruitment task: a three-step add product form embedded in a modal dialog, with live validation,
 a product table and pagination synchronised with the URL.
 
+## Live Demo
+
+https://ecommerce-task-ochre.vercel.app/
+
 ## Tech Stack
 
 - **React 19** + **TypeScript** + **Vite**
