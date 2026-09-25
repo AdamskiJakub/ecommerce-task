@@ -140,7 +140,6 @@ export function PricingStepFields({ form }: PricingStepFieldsProps) {
                 onValueChange={(value) => {
                   field.handleChange(value);
 
-                  // Recalculate brutto from the current netto with the new rate.
                   const vatRate = resolveVatRate(value);
                   const netto = parseNumber(form.state.values.priceNetto);
 

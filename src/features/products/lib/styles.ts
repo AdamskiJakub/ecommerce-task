@@ -1,9 +1,3 @@
-/**
- * Shared Tailwind class strings for the product form fields.
- *
- * Centralised so the three wizard steps stay visually identical and a design
- * tweak only has to be made in one place.
- */
 export const fieldClassName =
   "h-8 rounded-[50px] border-[#E5E5E5] bg-transparent px-3 text-sm shadow-none";
 

@@ -1,11 +1,5 @@
 import { z } from "zod";
 
-/**
- * Shared numeric helpers.
- *
- * Prices and quantities are kept as strings in the form state (so the user can
- * type freely, including an empty value) and validated/normalised on submit.
- */
 const PRICE_PRECISION = 2;
 
 export function roundToTwo(value: number): number {
@@ -15,10 +9,6 @@ export function roundToTwo(value: number): number {
 export function parseNumber(value: string): number {
   return Number(value.replace(",", "."));
 }
-
-/* -------------------------------------------------------------------------- */
-/* Step 1 — Basic information                                                 */
-/* -------------------------------------------------------------------------- */
 
 export const basicInfoSchema = z.object({
   name: z
@@ -49,10 +39,6 @@ export const basicInfoDefaultValues: BasicInfoFormValues = {
   category: "",
   features: [],
 };
-
-/* -------------------------------------------------------------------------- */
-/* Step 2 — Pricing                                                           */
-/* -------------------------------------------------------------------------- */
 
 const priceField = (label: string) =>
   z
@@ -109,10 +95,6 @@ export const pricingDefaultValues: PricingFormValues = {
   vatRate: "23",
   currency: "PLN",
 };
-
-/* -------------------------------------------------------------------------- */
-/* Step 3 — Availability                                                      */
-/* -------------------------------------------------------------------------- */
 
 const quantityField = (label: string) =>
   z
@@ -208,13 +190,6 @@ export const availabilityDefaultValues: AvailabilityFormValues = {
   maxCartQuantity: "10",
 };
 
-/* -------------------------------------------------------------------------- */
-/* Full wizard                                                                */
-/* -------------------------------------------------------------------------- */
-
-/**
- * Full wizard values — a single source of truth shared by every step.
- */
 export const productFormSchema = applyAvailabilityRefinements(
   basicInfoSchema
     .extend(pricingSchema.shape)
