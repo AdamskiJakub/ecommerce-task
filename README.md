@@ -24,7 +24,11 @@ https://ecommerce-task-ochre.vercel.app/
 
 ## Getting Started
 
+Clone the repository and install the dependencies:
+
 ```bash
+git clone https://github.com/AdamskiJakub/ecommerce-task.git
+cd ecommerce-task
 npm install
 npm run dev
 ```
