@@ -56,18 +56,12 @@ npm run lint
 ### `Error: Cannot find native binding` (Vite / Rolldown / oxlint)
 
 Vite and oxlint ship platform-specific native binaries as *optional* dependencies. A known
-npm bug ([npm/cli#4828](https://github.com/npm/cli/issues/4828)) can skip them during
-install, so `npm run dev` (or `npm run build` / `npm run lint`) fails with
-`Error: Cannot find native binding`.
+npm bug ([npm/cli#4828](https://github.com/npm/cli/issues/4828)) can leave them out of
+`node_modules` (typically after switching Node versions), so `npm run dev`
+(or `npm run build` / `npm run lint`) fails with `Error: Cannot find native binding`.
 
-Install the binary for your platform explicitly — the versions below match `package-lock.json`:
-
-```bash
-# Windows x64
-npm install @rolldown/binding-win32-x64-msvc@1.2.10 @oxlint/binding-win32-x64-msvc@1.85.0 --no-save
-```
-
-When in doubt, do a clean reinstall (this keeps the versions pinned in `package-lock.json`):
+The most reliable fix is a clean reinstall — it works on every platform and keeps the
+versions pinned in `package-lock.json`:
 
 ```bash
 # macOS / Linux
@@ -75,6 +69,21 @@ rm -rf node_modules && npm install
 
 # Windows (PowerShell)
 Remove-Item -Recurse -Force node_modules; npm install
+```
+
+If you prefer a targeted fix, install the two binaries matching your platform
+(versions taken from `package-lock.json`):
+
+| Platform      | Packages to install                                                             |
+| ------------- | ------------------------------------------------------------------------------- |
+| Windows x64   | `@rolldown/binding-win32-x64-msvc@1.2.10` `@oxlint/binding-win32-x64-msvc@1.85.0`   |
+| macOS (Apple) | `@rolldown/binding-darwin-arm64@1.2.10` `@oxlint/binding-darwin-arm64@1.85.0`       |
+| macOS (Intel) | `@rolldown/binding-darwin-x64@1.2.10` `@oxlint/binding-darwin-x64@1.85.0`           |
+| Linux x64     | `@rolldown/binding-linux-x64-gnu@1.2.10` `@oxlint/binding-linux-x64-gnu@1.85.0`     |
+| Linux ARM64   | `@rolldown/binding-linux-arm64-gnu@1.2.10` `@oxlint/binding-linux-arm64-gnu@1.85.0` |
+
+```bash
+npm install <packages-for-your-platform> --no-save
 ```
 
 ### `You are using Node.js … Vite requires Node.js version 20.19+ or 22.12+`
