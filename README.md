@@ -22,8 +22,15 @@ https://ecommerce-task-ochre.vercel.app/
 - **Node.js 20.19+ or 22.12+** — required by Vite 8 / Rolldown. Verify with `node -v`.
 - **npm 10+** — ships with Node.js.
 
-> ⚠️ On an older Node version Vite prints a warning and may fail to start. Upgrade with
-> `winget install OpenJS.NodeJS.LTS` (Windows) or `nvm install 22 && nvm use 22`.
+No Node.js yet? Grab an LTS build from <https://nodejs.org/en/download>, or:
+
+```bash
+winget install OpenJS.NodeJS.LTS   # Windows
+nvm install 22.12.0                # or, with nvm
+nvm use 22.12.0
+```
+
+> ⚠️ On an older Node version Vite prints a warning and may fail to start.
 
 ## Getting Started
 
@@ -94,7 +101,8 @@ the dependencies:
 ```bash
 winget install OpenJS.NodeJS.LTS   # Windows
 # or, with nvm
-nvm install 22 && nvm use 22
+nvm install 22.12.0
+nvm use 22.12.0
 ```
 
 ### `Port 5173 is already in use`
